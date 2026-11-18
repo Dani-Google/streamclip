@@ -12,14 +12,14 @@ import numpy as np
 
 def _default_model_path():
     """Local model if present, else "small" (faster-whisper downloads it
-    from Hugging Face on first use). Override with LIVECLIP_WHISPER_MODEL."""
+    from Hugging Face on first use). Override with STREAMCLIP_WHISPER_MODEL."""
     local = os.path.expanduser("~/workspace/models/whisper-small")
     if os.path.isdir(local):
         return local
     return "small"
 
 
-MODEL_PATH = os.environ.get("LIVECLIP_WHISPER_MODEL", _default_model_path())
+MODEL_PATH = os.environ.get("STREAMCLIP_WHISPER_MODEL", _default_model_path())
 
 
 def _fmt_time(seconds):

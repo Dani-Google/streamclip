@@ -1,4 +1,4 @@
-"""LiveClip MVP — turn a stream/VOD into vertical captioned clips.
+"""StreamClip MVP — turn a stream/VOD into vertical captioned clips.
 
 Pipeline: source -> moments (audio energy) -> clip -> captions (Whisper) -> render (1080x1920 MP4) -> outbox/
 Uploaders (TikTok / Shorts / Reels) are separate plug-in modules; the outbox

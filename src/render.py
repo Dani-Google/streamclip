@@ -6,7 +6,7 @@ import os
 import subprocess
 
 FFMPEG = "ffmpeg"
-FONTS_DIR = os.environ.get("LIVECLIP_FONTS_DIR",
+FONTS_DIR = os.environ.get("STREAMCLIP_FONTS_DIR",
                            "/usr/share/fonts/truetype/noto")
 
 

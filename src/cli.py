@@ -1,6 +1,6 @@
-"""LiveClip MVP — command line.
+"""StreamClip MVP — command line.
 
-Run from ~/workspace/liveclip-mvp with the whisper venv python:
+Run from ~/workspace/streamclip-mvp with the whisper venv python:
 
   # Clip a local file or a VOD URL into vertical captioned clips:
   python -m src.cli clip work/test-video.mp4 --max-clips 3 --clip-len 45
@@ -26,7 +26,7 @@ WORK = HERE / "work"
 
 
 def main():
-    parser = argparse.ArgumentParser(description="LiveClip MVP")
+    parser = argparse.ArgumentParser(description="StreamClip MVP")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_clip = sub.add_parser("clip", help="clip a file or VOD URL")

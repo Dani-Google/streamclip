@@ -1,0 +1,4 @@
+# Tested with faster-whisper 1.2.1 / numpy 2.5.4 on Python 3.12.
+# System tools (not pip): ffmpeg, yt-dlp.
+faster-whisper==1.2.1
+numpy==2.5.4

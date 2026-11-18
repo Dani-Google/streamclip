@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# LiveClip runtime outputs — never commit these
+work/
+outbox/
+*.mp4
+*.mkv
+*.wav
+*.ass
+
+# Secrets / local config
+.env

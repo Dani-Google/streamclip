@@ -1,5 +1,5 @@
 #!/bin/bash
-# LiveClip runner.
+# StreamClip runner.
 # Prefers a venv next to this script (./venv), then the whisper venv,
 # then system python3. Install: python3 -m venv venv && venv/bin/pip install -r requirements.txt
 # Usage: ./run.sh clip video.mp4

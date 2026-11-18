@@ -1,6 +1,6 @@
-# LiveClip — live stream → vertical captioned clips
+# StreamClip — live stream shorts
 
-LiveClip watches a YouTube Live stream as it airs, finds the loud moments
+StreamClip watches a YouTube Live stream as it airs, finds the loud moments
 (reactions, shouting, big plays), and cuts them into vertical **1080×1920**
 clips with burned-in captions — ready to post as Shorts / TikTok / Reels.
 It also clips recorded videos and VOD URLs the same way.
@@ -25,8 +25,8 @@ source (file / VOD URL / YouTube Live)
 Requirements: **Python 3.10+**, **ffmpeg** (with libx264 + libass), **yt-dlp**.
 
 ```bash
-git clone https://github.com/Dani-Google/liveclip.git
-cd liveclip
+git clone https://github.com/Dani-Google/streamclip.git
+cd streamclip
 
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
@@ -34,7 +34,7 @@ venv/bin/pip install -r requirements.txt
 
 The Whisper `small` model downloads automatically from Hugging Face on
 first use (~500 MB). If you already have a local model, point at it with
-`LIVECLIP_WHISPER_MODEL=/path/to/model`.
+`STREAMCLIP_WHISPER_MODEL=/path/to/model`.
 
 ## Usage
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamClip — live stream shorts</title>
+<meta name="description" content="StreamClip watches a YouTube Live stream as it airs, catches the loud moments, and cuts them into vertical captioned clips — ready to post. Free and open source.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0f; color: #f2f2f2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
+  a { color: #f23e40; text-decoration: none; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .logo span { color: #f23e40; }
+  .btn { display: inline-block; background: #f23e40; color: #fff; font-weight: 700; padding: 12px 26px; border-radius: 8px; }
+  .btn.ghost { background: transparent; border: 1px solid #333; color: #f2f2f2; }
+  .hero { text-align: center; padding: 64px 0 40px; }
+  .hero h1 { font-size: 56px; line-height: 1.05; letter-spacing: -1.5px; }
+  .hero h1 span { color: #f23e40; }
+  .hero p { color: #aaa; font-size: 19px; max-width: 620px; margin: 18px auto 0; }
+  .hero .cta { margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .badge { display: inline-block; background: #17171f; border: 1px solid #2a2a35; color: #bbb; font-size: 13px; padding: 6px 14px; border-radius: 100px; margin-bottom: 18px; }
+  .demo { padding: 20px 0 50px; text-align: center; }
+  .demo video { width: 300px; max-width: 100%; border-radius: 16px; border: 1px solid #2a2a35; display: block; margin: 0 auto; }
+  .demo p { color: #888; font-size: 14px; margin-top: 12px; }
+  section { padding: 44px 0; }
+  h2 { font-size: 28px; letter-spacing: -0.5px; margin-bottom: 20px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .step { background: #121218; border: 1px solid #232330; border-radius: 12px; padding: 22px; }
+  .step .n { color: #f23e40; font-weight: 800; font-size: 14px; }
+  .step h3 { margin: 8px 0 6px; font-size: 18px; }
+  .step p { color: #aaa; font-size: 15px; }
+  .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .feat { background: #121218; border: 1px solid #232330; border-radius: 12px; padding: 20px; }
+  .feat h3 { font-size: 17px; margin-bottom: 4px; }
+  .feat p { color: #aaa; font-size: 15px; }
+  .proof { background: #121218; border: 1px solid #232330; border-radius: 12px; padding: 24px; }
+  .proof p { color: #bbb; }
+  .proof b { color: #fff; }
+  ul.next { list-style: none; }
+  ul.next li { padding: 8px 0; border-bottom: 1px solid #1d1d26; color: #bbb; }
+  ul.next li::before { content: "→ "; color: #f23e40; font-weight: 700; }
+  footer { text-align: center; color: #666; font-size: 14px; padding: 40px 0 50px; }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 38px; }
+    .steps, .feats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">Stream<span>Clip</span></div>
+    <a href="https://github.com/Dani-Google/streamclip">GitHub ↗</a>
+  </header>
+
+  <div class="hero">
+    <div class="badge">Free &amp; open source · MIT</div>
+    <h1>Live stream <span>shorts.</span></h1>
+    <p>StreamClip watches a YouTube Live stream as it airs, catches the loud moments, and cuts them into vertical captioned clips — ready to post while the moment is still hot.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/Dani-Google/streamclip">Get it on GitHub</a>
+      <a class="btn ghost" href="#demo">Watch a sample clip</a>
+    </div>
+  </div>
+
+  <div class="demo" id="demo">
+    <video src="assets/demo-clip.mp4" controls playsinline preload="metadata"></video>
+    <p>Real clip, cut live from Kai Cenat's GTA 6 stream — captions transcribed on the spot.</p>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="n">STEP 1</div><h3>Watch live</h3><p>Point StreamClip at a YouTube Live stream. It captures the stream in segments as it airs — no waiting for the VOD.</p></div>
+      <div class="step"><div class="n">STEP 2</div><h3>Catch moments</h3><p>Audio-energy detection finds the loud reactions, shouts and big plays — the parts worth posting.</p></div>
+      <div class="step"><div class="n">STEP 3</div><h3>Clips, ready</h3><p>Each moment becomes a 30-second vertical 1080×1920 clip with burned-in captions, landing in your outbox folder.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What you get</h2>
+    <div class="feats">
+      <div class="feat"><h3>📺 Live watcher</h3><p>Captures YouTube Live as it happens. Twitch support is on the way.</p></div>
+      <div class="feat"><h3>🔥 Moment detection</h3><p>Loud-moment peaks picked automatically from the audio — no manual scrubbing.</p></div>
+      <div class="feat"><h3>💬 Real captions</h3><p>Word-level captions transcribed locally with Whisper and burned into the clip.</p></div>
+      <div class="feat"><h3>📱 Vertical, ready to post</h3><p>1080×1920 MP4s made for Shorts, TikTok and Reels.</p></div>
+      <div class="feat"><h3>💸 $0 to run</h3><p>No paid APIs, no sign-ups. Transcription and rendering run on your own machine.</p></div>
+      <div class="feat"><h3>🔓 Open source</h3><p>MIT licensed. Read the code, run it yourself, make it yours.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Proven live</h2>
+    <div class="proof">
+      <p><b>Tested on a real live stream:</b> Kai Cenat playing GTA 6 for the first time — 3 segments watched as they aired, 3 verified vertical captioned clips out. No recording, no simulation.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Coming next</h2>
+    <ul class="next">
+      <li>Auto-upload to TikTok, Shorts &amp; Reels</li>
+      <li>Twitch live support</li>
+      <li>Face-aware reframing &amp; caption polish</li>
+    </ul>
+  </section>
+
+  <section style="text-align:center;">
+    <a class="btn" href="https://github.com/Dani-Google/streamclip">Get StreamClip on GitHub</a>
+  </section>
+
+  <footer>© 2026 Danish Khan · StreamClip is free and open source (MIT).</footer>
+</div>
+</body>
+</html>

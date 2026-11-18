@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job #{{ job.id }} — StreamClip</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>StreamClip<span>.</span></h1>
+    <p class="tagline"><a href="/">← New job</a> · Job #{{ job.id }}</p>
+  </header>
+
+  <div class="card">
+    <p style="margin:0 0 6px; word-break:break-all;">{{ job.url }}</p>
+    <p style="margin:0 0 12px; color:#a9a9b3;">{{ job.mode }} ·
+      {{ job.max_clips }} clip(s) × {{ job.clip_len }}s ·
+      started {{ job.created_at }}</p>
+    <div class="progress"><div id="bar"></div></div>
+    <p class="stage"><span class="badge {{ job.status }}" id="badge">{{ job.status }}</span>
+      <span id="msg">{{ job.message }}</span></p>
+    <p class="error" id="err"></p>
+  </div>
+
+  <div id="clips"></div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Log</h3>
+    <pre class="log" id="log">…</pre>
+  </div>
+
+  <footer>StreamClip — MIT · by Danish Khan ·
+    <a href="https://github.com/Dani-Google/streamclip">GitHub</a></footer>
+</div>
+<script>
+const JID = {{ job.id | tojson }};
+async function poll() {
+  const res = await fetch('/api/jobs/' + JID);
+  const j = await res.json();
+  document.getElementById('bar').style.width = (j.progress || 0) + '%';
+  const badge = document.getElementById('badge');
+  badge.textContent = j.status; badge.className = 'badge ' + j.status;
+  document.getElementById('msg').textContent = j.message || '';
+  document.getElementById('err').textContent = j.error ? ('Error: ' + j.error) : '';
+  document.getElementById('log').textContent = (j.log || []).join('\n') || '…';
+  const box = document.getElementById('clips');
+  if (j.clips && j.clips.length) {
+    box.innerHTML = '<div class="card"><h3 style="margin-top:0">Your Shorts 🎬</h3>' +
+      j.clips.map(c =>
+        '<div class="clip"><video controls preload="metadata" src="/jobs/' + JID +
+        '/clip/' + encodeURIComponent(c.name) + '"></video>' +
+        '<div class="meta">' + c.name + ' · ' + c.size_mb + ' MB · ' +
+        '<a href="/jobs/' + JID + '/clip/' + encodeURIComponent(c.name) +
+        '/download">⬇ Download</a></div>' +
+        (c.captions ? '<div class="caps">“' + c.captions + '”</div>' : '') +
+        '</div>').join('') + '</div>';
+  }
+  if (j.status === 'done' || j.status === 'error') return;
+  setTimeout(poll, 2000);
+}
+poll();
+</script>
+</body>
+</html>

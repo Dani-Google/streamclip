@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StreamClip — paste a link, get Shorts</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>StreamClip<span>.</span></h1>
+    <p class="tagline">Paste a YouTube link — get vertical captioned Shorts.</p>
+  </header>
+
+  <div class="card">
+    <form id="jobform">
+      <label for="url">YouTube Live / video link</label>
+      <input type="url" id="url" name="url" required
+             placeholder="https://www.youtube.com/watch?v=…">
+      <div class="modes">
+        <label><input type="radio" name="mode" value="vod" checked>
+          📼 Recorded video / VOD — clip it now</label>
+        <label><input type="radio" name="mode" value="live">
+          🔴 YouTube Live — watch as it airs</label>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="max_clips">Clips (VOD)</label>
+          <input type="number" id="max_clips" name="max_clips"
+                 value="3" min="1" max="5">
+        </div>
+        <div class="field">
+          <label for="clip_len">Clip length (seconds)</label>
+          <input type="number" id="clip_len" name="clip_len"
+                 value="30" min="15" max="60" step="5">
+        </div>
+        <div class="field">
+          <label for="max_segments">Segments (Live)</label>
+          <input type="number" id="max_segments" name="max_segments"
+                 value="3" min="1" max="10">
+        </div>
+      </div>
+      <button class="big" id="submitBtn" type="submit">✂️ Make Shorts</button>
+      <p class="hint" id="formError" style="color:#fca5a5"></p>
+      <p class="hint">Free, no sign-up. Clips are made on this machine —
+        a VOD takes a few minutes; live mode is slower here (see limits below).</p>
+    </form>
+  </div>
+
+  <div class="card limits">
+    <h3>⚠️ Honest limits</h3>
+    <ul>
+      <li><b>Live capture lags on this machine</b> — a 60s live segment can
+        take 2–4 minutes to capture here, so clips trail the live moment.
+        Real-time watching needs a VPS (Oracle free tier or ~$5/mo).</li>
+      <li>This page is <b>local only</b> — no public link yet. A public
+        link needs the app on a VPS with a domain.</li>
+      <li>Auto-upload to TikTok / Shorts / Reels is <b>not built yet</b> —
+        download the clips and post them by hand for now.</li>
+      <li>Captions are one word at a time, centre-cropped 9:16 — side
+        content can be cut off.</li>
+    </ul>
+  </div>
+
+  {% if jobs %}
+  <div class="card">
+    <h3 style="margin-top:0">Recent jobs</h3>
+    <ul class="joblist">
+      {% for j in jobs %}
+      <li>
+        <a href="/job/{{ j.id }}">#{{ j.id }}</a>
+        <span class="badge {{ j.status }}">{{ j.status }}</span>
+        {{ j.mode }} · {{ j.clips|length }} clip(s) · {{ j.created_at }}
+        <br><span style="color:#a9a9b3">{{ j.url }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <footer>StreamClip — MIT · by Danish Khan ·
+    <a href="https://github.com/Dani-Google/streamclip">GitHub</a></footer>
+</div>
+<script>
+document.getElementById('jobform').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const err = document.getElementById('formError');
+  err.textContent = '';
+  btn.disabled = true; btn.textContent = 'Starting…';
+  const res = await fetch('/api/jobs', {
+    method: 'POST', body: new FormData(e.target) });
+  const data = await res.json();
+  if (!res.ok) {
+    err.textContent = data.error || 'Something went wrong.';
+    btn.disabled = false; btn.textContent = '✂️ Make Shorts';
+    return;
+  }
+  window.location.href = '/job/' + data.id;
+});
+</script>
+</body>
+</html>

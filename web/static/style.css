@@ -1,0 +1,77 @@
+/* StreamClip web — dark, red accent to match the product site. */
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: #0b0b0f; color: #f2f2f5;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+a { color: #ff6b6d; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 60px; }
+header h1 { font-size: 34px; margin: 0 0 4px; letter-spacing: -1px; }
+header h1 span { color: #f23e40; }
+.tagline { color: #a9a9b3; margin: 0 0 22px; font-size: 16px; }
+.card {
+  background: #16161d; border: 1px solid #26262f; border-radius: 14px;
+  padding: 20px; margin-bottom: 18px;
+}
+label { display: block; font-weight: 600; margin-bottom: 6px; }
+input[type=url] {
+  width: 100%; padding: 13px 14px; font-size: 16px; border-radius: 10px;
+  border: 1px solid #33333f; background: #0e0e13; color: #fff;
+}
+input[type=url]:focus { outline: 2px solid #f23e40; border-color: #f23e40; }
+.row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
+.field { flex: 1; min-width: 140px; }
+.field select, .field input {
+  width: 100%; padding: 10px; font-size: 15px; border-radius: 8px;
+  border: 1px solid #33333f; background: #0e0e13; color: #fff;
+}
+.modes { display: flex; gap: 18px; margin-top: 14px; font-size: 15px; }
+.modes label { display: inline; font-weight: 400; }
+button.big {
+  margin-top: 18px; width: 100%; padding: 14px; font-size: 18px;
+  font-weight: 700; color: #fff; background: #f23e40; border: none;
+  border-radius: 10px; cursor: pointer;
+}
+button.big:hover { background: #d92f31; }
+button.big:disabled { opacity: .55; cursor: wait; }
+.hint { color: #a9a9b3; font-size: 13px; margin-top: 10px; }
+.limits { border-color: #5a3a1a; background: #1d1712; }
+.limits h3 { margin: 0 0 6px; color: #ffb454; font-size: 15px; }
+.limits p, .limits li { color: #d8c9b8; font-size: 14px; margin: 4px 0; }
+.limits ul { margin: 6px 0 0; padding-left: 20px; }
+.joblist { list-style: none; padding: 0; margin: 0; }
+.joblist li { padding: 8px 0; border-bottom: 1px solid #26262f; font-size: 15px; }
+.joblist li:last-child { border-bottom: none; }
+.badge {
+  display: inline-block; padding: 2px 9px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+}
+.badge.done { background: #14532d; color: #86efac; }
+.badge.running, .badge.queued { background: #713f12; color: #fde68a; }
+.badge.error { background: #7f1d1d; color: #fca5a5; }
+.progress {
+  height: 12px; background: #26262f; border-radius: 8px; overflow: hidden;
+}
+.progress > div {
+  height: 100%; background: #f23e40; width: 0%;
+  transition: width .5s ease;
+}
+.stage { color: #a9a9b3; font-size: 14px; margin: 10px 0; }
+.clip { margin-top: 22px; }
+.clip video {
+  width: 100%; max-width: 360px; border-radius: 12px;
+  background: #000; display: block;
+}
+.clip .caps {
+  background: #0e0e13; border: 1px solid #26262f; border-radius: 8px;
+  padding: 10px 12px; font-size: 14px; color: #d4d4dc;
+  margin-top: 10px; max-width: 560px;
+}
+.clip .meta { font-size: 13px; color: #a9a9b3; margin-top: 8px; }
+pre.log {
+  background: #0e0e13; border: 1px solid #26262f; border-radius: 8px;
+  padding: 12px; font-size: 12px; color: #9d9dab; overflow-x: auto;
+  white-space: pre-wrap; max-height: 260px; overflow-y: auto;
+}
+.error { color: #fca5a5; }
+footer { color: #77777f; font-size: 13px; margin-top: 30px; }
